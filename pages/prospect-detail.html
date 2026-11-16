@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Prospek - WeblessHunter</title>
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/ui.css">
+  <link rel="stylesheet" href="prospects.css">
+  <link rel="stylesheet" href="prospect-detail.css">
+</head>
+<body class="page-shell">
+  <header class="topbar">
+    <div class="topbar-main">
+      <a class="brand" href="dashboard.html" aria-label="WeblessHunter">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>WeblessHunter</span>
+      </a>
+      <nav class="page-nav" aria-label="Navigasi halaman">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="prospects.html">Prospek</a>
+        <a href="settings.html">Pengaturan</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-main detail-main" id="main-content">
+    <a class="back-link" href="prospects.html">Kembali ke daftar prospek</a>
+    <section id="detail-root" aria-live="polite"></section>
+  </main>
+
+  <div id="detail-toast" class="page-toast" role="status" aria-live="polite" hidden></div>
+  <script type="module" src="prospect-detail.js"></script>
+</body>
+</html>

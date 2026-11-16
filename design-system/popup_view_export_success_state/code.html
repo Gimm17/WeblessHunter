@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WeblessHunter - Extension Popup</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "success-green": "#27AE60",
+                        "secondary-fixed": "#c5e8f7",
+                        "on-secondary-fixed-variant": "#294b58",
+                        "surface": "#f7f9ff",
+                        "danger-red": "#E74C3C",
+                        "inverse-surface": "#203243",
+                        "on-primary-fixed": "#001e30",
+                        "surface-container-low": "#edf4ff",
+                        "primary-fixed": "#cbe6ff",
+                        "muted-taupe": "#D2C4B4",
+                        "surface-container": "#e3efff",
+                        "on-secondary-container": "#466774",
+                        "surface-container-high": "#d9eaff",
+                        "secondary": "#426370",
+                        "on-surface-variant": "#42474d",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#c9dcf3",
+                        "info-blue": "#3498DB",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#d1e4fb",
+                        "on-tertiary-fixed": "#221a0f",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#3d627f",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#F3E3D0", /* Mapped to Warm Cream */
+                        "inverse-primary": "#a5cbec",
+                        "white-surface": "#FFFFFF",
+                        "tertiary-fixed-dim": "#d3c4b2",
+                        "warning-amber": "#F39C12",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#aea08f",
+                        "subtitle-blue": "#6B94B5",
+                        "secondary-fixed-dim": "#a9ccdb",
+                        "outline": "#72787e",
+                        "outline-variant": "#c2c7ce",
+                        "on-background": "#091d2e",
+                        "surface-container-highest": "#d1e4fb",
+                        "primary-fixed-dim": "#a5cbec",
+                        "primary": "#3d627f",
+                        "inverse-on-surface": "#e8f2ff",
+                        "on-secondary-fixed": "#001f28",
+                        "tertiary": "#685d4e",
+                        "on-surface": "#091d2e",
+                        "on-primary-container": "#113c57",
+                        "secondary-container": "#c2e5f5",
+                        "on-tertiary-container": "#40372a",
+                        "surface-bright": "#f7f9ff",
+                        "text-muted": "#6B7A8D",
+                        "on-primary-fixed-variant": "#234a66",
+                        "primary-container": "#81a6c6",
+                        "tertiary-fixed": "#f0e0cd",
+                        "on-tertiary-fixed-variant": "#4f4537"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "16px",
+                        "2xl": "24px",
+                        "panel-width": "380px",
+                        "md": "12px",
+                        "xl": "20px",
+                        "sm": "8px",
+                        "popup-width": "320px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-small": ["Inter"],
+                        "button-text": ["Plus Jakarta Sans"],
+                        "caption": ["Inter"],
+                        "body-regular": ["Inter"],
+                        "mono-data": ["JetBrains Mono"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "badge-text": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["15px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "body-small": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "button-text": ["13px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "caption": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "body-regular": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "mono-data": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "headline-lg": ["18px", {"lineHeight": "24px", "fontWeight": "700"}],
+                        "badge-text": ["10px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background flex items-center justify-center min-h-screen p-4">
+<!-- Popup Container -->
+<div class="w-popup-width bg-background shadow-[-4px_0_20px_rgba(0,0,0,0.10)] overflow-hidden flex flex-col font-body-regular text-on-surface">
+<!-- Header -->
+<header class="bg-primary-container px-lg py-lg flex justify-between items-center">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">search</span>
+<h1 class="font-headline-md text-headline-md text-on-primary">WeblessHunter</h1>
+</div>
+<span class="font-caption text-caption text-on-primary opacity-80">v1.0.0</span>
+</header>
+<!-- Stats Section -->
+<div class="m-md bg-white-surface rounded-[12px] border border-muted-taupe p-lg shadow-sm">
+<h2 class="font-badge-text text-badge-text text-text-muted mb-md uppercase tracking-wider">HARI INI</h2>
+<div class="grid grid-cols-3 gap-sm divide-x divide-muted-taupe text-center">
+<div class="flex flex-col">
+<span class="font-caption text-caption text-text-muted mb-xs">Discan</span>
+<span class="font-headline-lg text-headline-lg text-primary-container">47</span>
+</div>
+<div class="flex flex-col pl-sm">
+<span class="font-caption text-caption text-text-muted mb-xs">Prospek</span>
+<span class="font-headline-lg text-headline-lg text-primary-container">31</span>
+</div>
+<div class="flex flex-col pl-sm">
+<span class="font-caption text-caption text-text-muted mb-xs">Tersimpan</span>
+<span class="font-headline-lg text-headline-lg text-primary-container">8</span>
+</div>
+</div>
+</div>
+<!-- Menu Section -->
+<nav class="px-md pb-md flex flex-col gap-sm">
+<button class="w-full bg-white-surface rounded-[10px] border border-muted-taupe p-[14px] flex items-center justify-between hover:bg-surface-container-low transition-colors shadow-[0_2px_8px_rgba(0,0,0,0.06)] active:scale-95 duration-150 group">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary-container group-hover:text-primary transition-colors">group</span>
+<span class="font-button-text text-button-text text-on-surface">Liat Semua Prospek</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+<button class="w-full bg-white-surface rounded-[10px] border border-muted-taupe p-[14px] flex items-center justify-between hover:bg-surface-container-low transition-colors shadow-[0_2px_8px_rgba(0,0,0,0.06)] active:scale-95 duration-150 group">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary-container group-hover:text-primary transition-colors">download</span>
+<span class="font-button-text text-button-text text-on-surface">Export CSV</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+<button class="w-full bg-white-surface rounded-[10px] border border-muted-taupe p-[14px] flex items-center justify-between hover:bg-surface-container-low transition-colors shadow-[0_2px_8px_rgba(0,0,0,0.06)] active:scale-95 duration-150 group">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary-container group-hover:text-primary transition-colors">settings</span>
+<span class="font-button-text text-button-text text-on-surface">Pengaturan</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+</nav>
+<!-- Status Footer -->
+<div class="mx-md mb-md bg-success-green rounded-lg p-[10px_16px] shadow-md flex items-center gap-md animate-[slide-up_0.3s_ease-out] transition-all" id="toast-export-success">
+<span class="material-symbols-outlined text-white text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-regular text-[13px] font-medium text-white">Data berhasil diekspor!</span>
+</div>
+<style>
+@keyframes slide-up {
+  0% { transform: translateY(100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+.animate-\[slide-up_0.3s_ease-out\] {
+  animation: slide-up 0.3s ease-out;
+}
+</style><footer class="mt-auto border-t border-muted-taupe bg-background px-lg py-md flex items-center gap-sm">
+<div class="w-2 h-2 rounded-full bg-success-green shadow-[0_0_8px_rgba(39,174,96,0.4)] animate-pulse"></div>
+<span class="font-body-small text-body-small text-on-surface">Aktif di Google Maps</span>
+</footer>
+</div>
+</body></html>

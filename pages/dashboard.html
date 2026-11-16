@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - WeblessHunter</title>
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/ui.css">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body class="page-shell">
+  <header class="topbar">
+    <div class="topbar-main">
+      <a class="brand" href="dashboard.html" aria-label="WeblessHunter">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>WeblessHunter</span>
+      </a>
+      <nav class="page-nav" aria-label="Navigasi halaman">
+        <a href="dashboard.html" aria-current="page">Dashboard</a>
+        <a href="prospects.html">Prospek</a>
+        <a href="settings.html">Pengaturan</a>
+      </nav>
+    </div>
+    <div class="topbar-actions">
+      <label class="top-search" for="dashboard-search">
+        <span aria-hidden="true"></span>
+        <input id="dashboard-search" type="search" placeholder="Cari prospek...">
+      </label>
+      <a class="button button-primary" href="prospects.html">Lihat Prospek</a>
+    </div>
+  </header>
+
+  <main class="page-main dashboard-main" id="main-content">
+    <section class="dashboard-hero" aria-labelledby="dashboard-title">
+      <div>
+        <h1 class="page-title" id="dashboard-title">Dashboard</h1>
+        <p class="page-subtitle">Pantau hasil scan, validasi, kategori, dan mulai pencarian lead baru dari satu halaman.</p>
+      </div>
+      <div class="dashboard-meta" id="last-updated">Menyiapkan data...</div>
+    </section>
+
+    <section class="dashboard-stats" aria-label="Ringkasan dashboard">
+      <article class="card dashboard-stat-card">
+        <div class="stat-card-top">
+          <span class="stat-label">Total Prospek Ditemukan</span>
+          <span class="stat-icon stat-icon-group" aria-hidden="true"></span>
+        </div>
+        <strong class="dashboard-stat-number" id="stat-total-found">0</strong>
+        <span class="stat-trend success" id="stat-found-trend">0 hasil scan tersimpan</span>
+      </article>
+      <article class="card dashboard-stat-card">
+        <div class="stat-card-top">
+          <span class="stat-label">Validasi Selesai</span>
+          <span class="stat-icon stat-icon-check" aria-hidden="true"></span>
+        </div>
+        <strong class="dashboard-stat-number" id="stat-validated">0</strong>
+        <span class="stat-trend muted" id="stat-validated-note">0% dari prospek tersimpan</span>
+      </article>
+      <article class="card dashboard-stat-card">
+        <div class="stat-card-top">
+          <span class="stat-label">Conversion Rate</span>
+          <span class="stat-icon stat-icon-chart" aria-hidden="true"></span>
+        </div>
+        <strong class="dashboard-stat-number" id="stat-conversion">0%</strong>
+        <div class="mini-progress" aria-hidden="true"><span id="stat-conversion-bar"></span></div>
+      </article>
+    </section>
+
+    <section class="card dashboard-funnel-card" aria-labelledby="funnel-title">
+      <h2 class="section-heading" id="funnel-title">Corong Validasi</h2>
+      <div class="funnel-steps">
+        <article class="funnel-step">
+          <span>Total Discan</span>
+          <strong id="funnel-scanned">0</strong>
+        </article>
+        <article class="funnel-step">
+          <span>Lulus Validasi</span>
+          <strong id="funnel-validated">0</strong>
+        </article>
+        <article class="funnel-step">
+          <span>Tersimpan</span>
+          <strong id="funnel-saved">0</strong>
+        </article>
+      </div>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="card analytics-card" aria-labelledby="activity-title">
+        <h2 class="section-heading" id="activity-title">Aktivitas Mingguan Detail</h2>
+        <div class="chart-legend">
+          <span><i class="legend-swatch primary"></i>Total Discan</span>
+          <span><i class="legend-swatch secondary"></i>Prospek Kuat</span>
+        </div>
+        <div class="weekly-chart" id="weekly-chart" aria-label="Grafik aktivitas mingguan"></div>
+      </article>
+
+      <article class="card analytics-card" aria-labelledby="category-title">
+        <h2 class="section-heading" id="category-title">Distribusi Kategori Bisnis</h2>
+        <div class="category-chart-wrap">
+          <div class="donut-chart" id="category-donut" aria-hidden="true"><span id="category-total">0</span></div>
+          <div class="category-legend" id="category-legend"></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="dashboard-bottom-grid">
+      <article class="card recent-card" aria-labelledby="recent-title">
+        <div class="card-heading-row">
+          <h2 class="section-heading" id="recent-title">Scan Terbaru</h2>
+          <a class="inline-link" href="prospects.html">View All</a>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table compact-table">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Location</th>
+                <th scope="col">Keyword</th>
+                <th scope="col" class="text-right">Leads Found</th>
+              </tr>
+            </thead>
+            <tbody id="recent-scans-body"></tbody>
+          </table>
+          <div class="empty-state" id="recent-scans-empty" hidden>Belum ada riwayat scan.</div>
+        </div>
+      </article>
+
+      <article class="card quick-scan-card" aria-labelledby="quick-scan-title">
+        <h2 class="section-heading with-icon" id="quick-scan-title">
+          <span class="radar-icon" aria-hidden="true"></span>
+          Mulai Scan Baru
+        </h2>
+        <form id="dashboard-scan-form" class="quick-scan-form">
+          <div>
+            <label class="label" for="dashboard-category">Kategori Usaha</label>
+            <select class="select" id="dashboard-category"></select>
+          </div>
+          <div>
+            <label class="label" for="dashboard-location">Lokasi Target</label>
+            <input class="field" id="dashboard-location" type="search" list="dashboard-location-options" placeholder="Pilih atau ketik kota">
+            <datalist id="dashboard-location-options"></datalist>
+          </div>
+          <div>
+            <label class="label" for="dashboard-keyword-input">Keyword Usaha</label>
+            <input class="field" id="dashboard-keyword-input" type="search" placeholder="e.g. Kedai Kopi">
+          </div>
+          <div>
+            <label class="label" for="dashboard-target-count">Target Hasil</label>
+            <select class="select" id="dashboard-target-count"></select>
+          </div>
+          <button class="button button-primary quick-scan-button" id="dashboard-scan-button" type="submit">Mulai Scan</button>
+        </form>
+      </article>
+    </section>
+
+    <div id="dashboard-toast" class="page-toast" role="status" aria-live="polite" hidden></div>
+  </main>
+  <script type="module" src="dashboard.js"></script>
+</body>
+</html>

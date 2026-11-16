@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard - WeblessHunter</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@400&amp;family=Plus+Jakarta+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#685d4e",
+                        "error-container": "#ffdad6",
+                        "secondary": "#426370",
+                        "on-tertiary-fixed-variant": "#4f4537",
+                        "surface-tint": "#3d627f",
+                        "on-error": "#ffffff",
+                        "text-muted": "#6B7A8D",
+                        "on-primary": "#ffffff",
+                        "success-green": "#27AE60",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "muted-taupe": "#D2C4B4",
+                        "on-secondary-container": "#466774",
+                        "primary": "#3d627f",
+                        "warning-amber": "#F39C12",
+                        "secondary-fixed": "#c5e8f7",
+                        "on-surface": "#091d2e",
+                        "primary-fixed-dim": "#a5cbec",
+                        "inverse-primary": "#a5cbec",
+                        "inverse-surface": "#203243",
+                        "surface-variant": "#d1e4fb",
+                        "on-secondary-fixed": "#001f28",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#d9eaff",
+                        "primary-container": "#81a6c6",
+                        "on-primary-container": "#113c57",
+                        "on-tertiary-container": "#40372a",
+                        "outline-variant": "#c2c7ce",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#221a0f",
+                        "surface-container-low": "#edf4ff",
+                        "subtitle-blue": "#6B94B5",
+                        "tertiary-fixed-dim": "#d3c4b2",
+                        "tertiary-fixed": "#f0e0cd",
+                        "background": "#F3E3D0", /* Overridden per prompt */
+                        "danger-red": "#E74C3C",
+                        "surface-dim": "#c9dcf3",
+                        "secondary-fixed-dim": "#a9ccdb",
+                        "inverse-on-surface": "#e8f2ff",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#42474d",
+                        "surface-container": "#e3efff",
+                        "info-blue": "#3498DB",
+                        "on-primary-fixed-variant": "#234a66",
+                        "on-primary-fixed": "#001e30",
+                        "on-background": "#091d2e",
+                        "surface-container-highest": "#d1e4fb",
+                        "outline": "#72787e",
+                        "white-surface": "#FFFFFF",
+                        "secondary-container": "#c2e5f5",
+                        "primary-fixed": "#cbe6ff",
+                        "tertiary-container": "#aea08f",
+                        "surface-bright": "#f7f9ff",
+                        "surface": "#f7f9ff",
+                        "on-secondary-fixed-variant": "#294b58"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "12px", /* Overridden per prompt */
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "popup-width": "320px",
+                        "xl": "20px",
+                        "sm": "8px",
+                        "panel-width": "380px",
+                        "2xl": "24px",
+                        "md": "12px",
+                        "xs": "4px",
+                        "lg": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+                        "caption": ["Inter", "sans-serif"],
+                        "button-text": ["Plus Jakarta Sans", "sans-serif"],
+                        "badge-text": ["Plus Jakarta Sans", "sans-serif"],
+                        "body-small": ["Inter", "sans-serif"],
+                        "body-regular": ["Inter", "sans-serif"],
+                        "mono-data": ["JetBrains Mono", "monospace"],
+                        "headline-lg": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["15px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "caption": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "button-text": ["13px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "badge-text": ["10px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "body-small": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "body-regular": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "mono-data": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "headline-lg": ["18px", {"lineHeight": "24px", "fontWeight": "700"}]
+                    },
+                    "boxShadow": {
+                        "card-subtle": "0 2px 8px rgba(0,0,0,0.06)",
+                        "btn-primary": "0 2px 6px rgba(129,166,198,0.30)",
+                    }
+                }
+            }
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .card-base {
+                @apply bg-white-surface border border-muted-taupe rounded-xl shadow-card-subtle p-lg;
+            }
+            .input-base {
+                @apply bg-white-surface border border-muted-taupe rounded-lg focus:border-primary-container focus:ring focus:ring-primary-container/15 w-full font-body-regular text-body-regular px-md py-[10px];
+            }
+            .btn-primary {
+                @apply bg-primary-container text-on-primary font-button-text text-button-text rounded-lg px-lg py-[10px] shadow-btn-primary hover:bg-surface-tint active:scale-95 transition-all w-full text-center;
+            }
+            .stat-number {
+                @apply font-headline-lg text-[32px] leading-[40px] text-primary-container font-bold mb-xs;
+            }
+            .stat-label {
+                @apply font-body-small text-body-small text-[#2C3E50];
+            }
+        }
+    </style>
+</head>
+<body class="bg-background min-h-screen font-body-regular text-body-regular text-on-surface antialiased">
+<!-- TopAppBar -->
+<header class="bg-white-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm dark:shadow-none docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center w-full px-lg h-16 max-w-full mx-auto">
+<!-- Brand & Search -->
+<div class="flex items-center gap-xl">
+<div class="text-headline-lg font-headline-lg font-bold text-primary dark:text-primary-fixed">
+                    WeblessHunter
+                </div>
+<div class="relative hidden md:block w-64">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-text-muted text-[18px]">search</span>
+<input class="bg-surface-bright border border-muted-taupe rounded-full pl-[36px] pr-md py-sm w-full font-body-small text-body-small focus:border-primary-container focus:ring focus:ring-primary-container/15 outline-none transition-all" placeholder="Search..." type="text"/>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center h-full gap-xl">
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary font-bold pb-1 flex items-center h-full hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">
+<span class="font-button-text text-button-text">Dashboard</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium flex items-center h-full hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">
+<span class="font-button-text text-button-text">Prospects</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium flex items-center h-full hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">
+<span class="font-button-text text-button-text">Settings</span>
+</a>
+</nav>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-md">
+<button class="p-sm text-text-muted hover:text-primary dark:hover:text-primary-fixed transition-colors scale-95 active:scale-90 transition-transform duration-150 rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-sm text-text-muted hover:text-primary dark:hover:text-primary-fixed transition-colors scale-95 active:scale-90 transition-transform duration-150 rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-container overflow-hidden border border-muted-taupe ml-sm">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="A small circular avatar image showing a professional headshot of a person, used as a user profile picture in a modern web application dashboard. The image is clear and well-lit." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEVmTPSED2by-IZuBldpAXy6d8Yk88r4eloBnx2ATe4h0zQHcEto56zIj9nQtbWu56_J7Bxck8GWRjeUjZTy4yw7mzHjwGOJI5wMrLgAC02eVioEbepOXJrRS9nPpsxMLdRR6tJaJISQiR7fAZGHftAZYOkFadtW0WO0Rde9YyJoMQQoEPmzSNCs_orcOL669AcWkNYIUyN78t-xdiZFU1q859_sQ2nSmKLZdI-xYLYTNvc5SzGJ2t5Ek5MUV-dT8XArs_weug24lL"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="max-w-[1200px] mx-auto px-lg py-2xl space-y-2xl">
+<!-- Hero Stats Row -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="card-base flex flex-col justify-center">
+<div class="flex items-center justify-between mb-sm">
+<span class="stat-label">Total Prospek Ditemukan</span>
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">groups</span>
+</div>
+<div class="stat-number">1,284</div>
+<div class="font-caption text-caption text-success-green flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+<span>+12% vs last week</span>
+</div>
+</div>
+<div class="card-base flex flex-col justify-center">
+<div class="flex items-center justify-between mb-sm">
+<span class="stat-label">Validasi Selesai</span>
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="stat-number">856</div>
+<div class="font-caption text-caption text-text-muted flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+<span>Last updated 5 mins ago</span>
+</div>
+</div>
+<div class="card-base flex flex-col justify-center">
+<div class="flex items-center justify-between mb-sm">
+<span class="stat-label">Conversion Rate</span>
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">monitoring</span>
+</div>
+<div class="stat-number">12.4%</div>
+<div class="w-full bg-muted-taupe h-[4px] rounded-full mt-sm overflow-hidden">
+<div class="bg-primary-container h-full rounded-full w-[12.4%]"></div>
+</div>
+</div>
+</section>
+<!-- Validation Funnel Section -->
+<section class="card-base">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-xl">Corong Validasi</h2>
+<div class="flex flex-col md:flex-row items-center justify-between gap-md relative">
+<div class="flex-1 bg-surface-container-low border border-muted-taupe rounded-lg p-lg text-center w-full md:w-auto z-10 relative">
+<div class="stat-label mb-xs">Total Discan</div>
+<div class="stat-number text-[24px] leading-[32px] text-on-surface">1,284</div>
+<div class="hidden md:flex absolute -right-6 top-1/2 -translate-y-1/2 z-20 w-8 h-8 items-center justify-center bg-white-surface border border-muted-taupe rounded-full shadow-sm text-text-muted">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+<div class="flex md:hidden absolute left-1/2 -bottom-6 -translate-x-1/2 z-20 w-8 h-8 items-center justify-center bg-white-surface border border-muted-taupe rounded-full shadow-sm text-text-muted">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+<div class="flex-1 bg-surface-container-low border border-muted-taupe rounded-lg p-lg text-center w-full md:w-auto z-10 relative">
+<div class="stat-label mb-xs">Lulus Validasi</div>
+<div class="stat-number text-[24px] leading-[32px] text-primary-container">856</div>
+<div class="hidden md:flex absolute -right-6 top-1/2 -translate-y-1/2 z-20 w-8 h-8 items-center justify-center bg-white-surface border border-muted-taupe rounded-full shadow-sm text-text-muted">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+<div class="flex md:hidden absolute left-1/2 -bottom-6 -translate-x-1/2 z-20 w-8 h-8 items-center justify-center bg-white-surface border border-muted-taupe rounded-full shadow-sm text-text-muted">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+<div class="flex-1 bg-surface-container-low border border-muted-taupe rounded-lg p-lg text-center w-full md:w-auto z-10">
+<div class="stat-label mb-xs">Tersimpan</div>
+<div class="stat-number text-[24px] leading-[32px] text-success-green">420</div>
+</div>
+</div>
+</section>
+<!-- Analytical Charts Grid Row -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Activity Chart -->
+<div class="card-base flex flex-col">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-md">Aktivitas Mingguan Detail</h2>
+<div class="flex items-center gap-md mb-xl font-caption text-caption">
+<div class="flex items-center gap-xs"><div class="w-3 h-3 rounded-sm bg-[#81A6C6]"></div><span class="text-text-muted">Total Discan</span></div>
+<div class="flex items-center gap-xs"><div class="w-3 h-3 rounded-sm bg-[#AACDDC]"></div><span class="text-text-muted">Prospek Kuat</span></div>
+</div>
+<div class="h-[200px] w-full flex items-end justify-between gap-sm pt-xl border-b border-muted-taupe relative mt-auto">
+<div class="w-full flex items-end gap-[2px] h-full relative group">
+<div class="w-1/2 bg-[#81A6C6] h-[40%] rounded-t-sm"></div>
+<div class="w-1/2 bg-[#AACDDC] h-[20%] rounded-t-sm"></div>
+</div>
+<div class="w-full flex items-end gap-[2px] h-full relative group">
+<div class="w-1/2 bg-[#81A6C6] h-[65%] rounded-t-sm"></div>
+<div class="w-1/2 bg-[#AACDDC] h-[35%] rounded-t-sm"></div>
+</div>
+<div class="w-full flex items-end gap-[2px] h-full relative group">
+<div class="w-1/2 bg-[#81A6C6] h-[50%] rounded-t-sm"></div>
+<div class="w-1/2 bg-[#AACDDC] h-[25%] rounded-t-sm"></div>
+</div>
+<div class="w-full flex items-end gap-[2px] h-full relative group">
+<div class="w-1/2 bg-[#81A6C6] h-[80%] rounded-t-sm"></div>
+<div class="w-1/2 bg-[#AACDDC] h-[45%] rounded-t-sm"></div>
+</div>
+<div class="w-full flex items-end gap-[2px] h-full relative group">
+<div class="w-1/2 bg-[#81A6C6] h-[70%] rounded-t-sm"></div>
+<div class="w-1/2 bg-[#AACDDC] h-[40%] rounded-t-sm"></div>
+</div>
+<div class="w-full flex items-end gap-[2px] h-full relative group">
+<div class="w-1/2 bg-[#81A6C6] h-[95%] rounded-t-sm"></div>
+<div class="w-1/2 bg-[#AACDDC] h-[60%] rounded-t-sm"></div>
+</div>
+<div class="w-full flex items-end gap-[2px] h-full relative group">
+<div class="w-1/2 bg-[#81A6C6] h-[85%] rounded-t-sm"></div>
+<div class="w-1/2 bg-[#AACDDC] h-[50%] rounded-t-sm"></div>
+</div>
+</div>
+<div class="flex justify-between mt-sm font-caption text-caption text-text-muted px-xs">
+<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+</div>
+</div>
+<!-- Distribution Chart -->
+<div class="card-base flex flex-col">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-xl">Distribusi Kategori Bisnis</h2>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-xl h-full py-md">
+<!-- Donut -->
+<div class="relative w-[160px] h-[160px] rounded-full shadow-sm" style="background: conic-gradient(#81a6c6 0% 40%, #a9ccdb 40% 65%, #c5e8f7 65% 85%, #d1e4fb 85% 100%);">
+<div class="absolute inset-[25%] bg-white-surface rounded-full shadow-inner flex items-center justify-center">
+<span class="font-headline-md text-headline-md text-primary-container">100%</span>
+</div>
+</div>
+<!-- Legend -->
+<div class="flex flex-col gap-md w-full sm:w-auto font-body-small text-body-small">
+<div class="flex items-center justify-between gap-xl">
+<div class="flex items-center gap-sm text-on-surface"><div class="w-3 h-3 rounded-sm bg-[#81a6c6]"></div><span>Cafe</span></div>
+<span class="font-bold text-on-surface">40%</span>
+</div>
+<div class="flex items-center justify-between gap-xl">
+<div class="flex items-center gap-sm text-on-surface"><div class="w-3 h-3 rounded-sm bg-[#a9ccdb]"></div><span>Salon</span></div>
+<span class="font-bold text-on-surface">25%</span>
+</div>
+<div class="flex items-center justify-between gap-xl">
+<div class="flex items-center gap-sm text-on-surface"><div class="w-3 h-3 rounded-sm bg-[#c5e8f7]"></div><span>Bengkel</span></div>
+<span class="font-bold text-on-surface">20%</span>
+</div>
+<div class="flex items-center justify-between gap-xl">
+<div class="flex items-center gap-sm text-on-surface"><div class="w-3 h-3 rounded-sm bg-[#d1e4fb]"></div><span>Retail</span></div>
+<span class="font-bold text-on-surface">15%</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Activity & Quick Start Row -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<!-- Recent Scans Table (Wide) -->
+<div class="card-base lg:col-span-2 flex flex-col">
+<div class="flex justify-between items-center mb-xl">
+<h2 class="font-headline-md text-headline-md text-on-surface">Scan Terbaru</h2>
+<button class="font-button-text text-button-text text-primary-container hover:text-surface-tint transition-colors">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-muted-taupe">
+<th class="font-caption text-caption text-text-muted uppercase pb-sm font-semibold">Date</th>
+<th class="font-caption text-caption text-text-muted uppercase pb-sm font-semibold">Location</th>
+<th class="font-caption text-caption text-text-muted uppercase pb-sm font-semibold">Keyword</th>
+<th class="font-caption text-caption text-text-muted uppercase pb-sm font-semibold text-right">Leads Found</th>
+</tr>
+</thead>
+<tbody class="font-body-small text-body-small">
+<tr class="border-b border-surface-container-low hover:bg-surface-bright transition-colors">
+<td class="py-md whitespace-nowrap">Oct 24, 2023</td>
+<td class="py-md text-on-surface font-medium">Jakarta Selatan</td>
+<td class="py-md text-subtitle-blue">Coffee Shop</td>
+<td class="py-md text-right font-mono-data text-mono-data font-medium">42</td>
+</tr>
+<tr class="border-b border-surface-container-low hover:bg-surface-bright transition-colors">
+<td class="py-md whitespace-nowrap">Oct 23, 2023</td>
+<td class="py-md text-on-surface font-medium">Bandung</td>
+<td class="py-md text-subtitle-blue">Digital Agency</td>
+<td class="py-md text-right font-mono-data text-mono-data font-medium">18</td>
+</tr>
+<tr class="border-b border-surface-container-low hover:bg-surface-bright transition-colors">
+<td class="py-md whitespace-nowrap">Oct 22, 2023</td>
+<td class="py-md text-on-surface font-medium">Surabaya</td>
+<td class="py-md text-subtitle-blue">Boutique Hotel</td>
+<td class="py-md text-right font-mono-data text-mono-data font-medium">27</td>
+</tr>
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="py-md whitespace-nowrap">Oct 20, 2023</td>
+<td class="py-md text-on-surface font-medium">Bali</td>
+<td class="py-md text-subtitle-blue">Yoga Studio</td>
+<td class="py-md text-right font-mono-data text-mono-data font-medium">56</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Quick Start Form (Narrow) -->
+<div class="card-base bg-surface-container-low border-none shadow-none">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-lg flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary-container">radar</span>
+                    Mulai Scan Baru
+                </h2>
+<form class="space-y-md">
+<div>
+<label class="block font-caption text-caption text-text-muted mb-xs">Keyword Usaha</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-text-muted text-[18px]">storefront</span>
+<input class="input-base pl-[36px]" placeholder="e.g. Kedai Kopi" type="text"/>
+</div>
+</div>
+<div>
+<label class="block font-caption text-caption text-text-muted mb-xs">Lokasi Target</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-text-muted text-[18px]">location_on</span>
+<select class="input-base pl-[36px] appearance-none cursor-pointer">
+<option disabled="" selected="" value="">Pilih Kota</option>
+<option value="jkt">Jakarta</option>
+<option value="bdg">Bandung</option>
+<option value="sby">Surabaya</option>
+<option value="bli">Bali</option>
+</select>
+<span class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-text-muted text-[18px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="pt-sm">
+<button class="btn-primary flex justify-center items-center gap-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                            Mulai Scan
+                        </button>
+</div>
+</form>
+</div>
+</section>
+</main>
+</body></html>

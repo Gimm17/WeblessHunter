@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WeblessHunter Side Panel</title>
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/ui.css">
+  <link rel="stylesheet" href="panel.css">
+</head>
+<body>
+  <div class="panel-shell">
+    <header class="panel-header">
+      <div class="panel-brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>WeblessHunter</span>
+      </div>
+      <div class="panel-actions">
+        <button class="icon-button" type="button" id="settings-button" aria-label="Buka pengaturan"></button>
+        <button class="icon-button icon-button-close" type="button" id="close-button" aria-label="Tutup panel"></button>
+      </div>
+    </header>
+
+    <section class="panel-subheader" aria-live="polite">
+      <span id="scan-summary">Siap scan Google Maps</span>
+      <span class="scan-status"><span class="status-dot" id="scan-dot"></span><span id="scan-state">Idle</span></span>
+    </section>
+
+    <nav class="panel-tabs" aria-label="Navigasi panel">
+      <button type="button" class="panel-tab is-active" id="tab-candidates" data-tab="candidates">Kandidat (0)</button>
+      <button type="button" class="panel-tab" id="tab-saved" data-tab="saved">Tersimpan (0)</button>
+      <button type="button" class="panel-tab" id="tab-contact" data-tab="contact">Siap Kontak (0)</button>
+      <button type="button" class="panel-tab panel-tab-export" id="export-button">Export</button>
+    </nav>
+
+    <section class="filter-bar" aria-label="Filter kandidat">
+      <label class="sr-only" for="status-filter">Filter status</label>
+      <select id="status-filter" class="select compact-select">
+        <option value="ALL">Semua Status</option>
+        <option value="BELUM_DICEK">Belum Dicek</option>
+        <option value="PROSPEK_KUAT">Prospek Kuat</option>
+        <option value="PROSPEK">Prospek</option>
+        <option value="UNCERTAIN">Uncertain</option>
+        <option value="SKIP">Skip</option>
+      </select>
+      <label class="sr-only" for="rating-filter">Filter rating</label>
+      <select id="rating-filter" class="select compact-select">
+        <option value="0">Semua Rating</option>
+        <option value="4">Rating 4+</option>
+        <option value="4.5">Rating 4.5+</option>
+      </select>
+      <label class="sr-only" for="search-input">Cari bisnis</label>
+      <input id="search-input" class="field compact-search" type="search" placeholder="Cari">
+    </section>
+
+    <section class="workflow-bar" aria-label="Aksi cepat prospek">
+      <button type="button" class="button button-secondary workflow-button" id="hot-filter">Prospek Bagus</button>
+      <button type="button" class="button button-secondary workflow-button" id="check-top">Check 10</button>
+      <button type="button" class="button button-secondary workflow-button" id="check-all">Check Semua</button>
+      <button type="button" class="button button-primary workflow-button" id="save-selected" disabled>Simpan Terpilih</button>
+    </section>
+
+    <main id="main-content" class="panel-content" tabindex="-1">
+      <section id="list-view" aria-live="polite"></section>
+      <section id="detail-view" hidden></section>
+    </main>
+
+    <div id="toast" class="panel-toast" role="status" aria-live="polite" hidden></div>
+  </div>
+  <script type="module" src="panel.js"></script>
+</body>
+</html>

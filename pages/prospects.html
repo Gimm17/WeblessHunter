@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar Prospek - WeblessHunter</title>
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/ui.css">
+  <link rel="stylesheet" href="prospects.css">
+</head>
+<body class="page-shell prospects-shell">
+  <header class="topbar">
+    <div class="topbar-main">
+      <a class="brand" href="dashboard.html" aria-label="WeblessHunter">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>WeblessHunter</span>
+      </a>
+      <nav class="page-nav" aria-label="Navigasi halaman">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="prospects.html" aria-current="page">Prospek</a>
+        <a href="settings.html">Pengaturan</a>
+      </nav>
+    </div>
+    <div class="topbar-actions export-group">
+      <label class="sr-only" for="export-format">Mode export</label>
+      <select class="select" id="export-format">
+        <option value="csv">CSV Lengkap</option>
+        <option value="followup">CSV Follow-up</option>
+        <option value="json">JSON Backup</option>
+      </select>
+      <button type="button" class="button button-primary" id="page-export">
+        <span class="download-icon" aria-hidden="true"></span>
+        Export CSV
+      </button>
+    </div>
+  </header>
+
+  <main class="page-main prospects-main" id="main-content">
+    <section class="prospects-header">
+      <div>
+        <h1 class="page-title">Daftar Prospek</h1>
+        <p class="page-subtitle">Kelola, analisis, dan ekspor data bisnis yang telah Anda simpan.</p>
+      </div>
+      <a class="button button-secondary" href="dashboard.html">Kembali ke Dashboard</a>
+    </section>
+
+    <section class="stats-grid prospects-stats" aria-label="Statistik prospek">
+      <article class="card stat-card prospect-stat-card">
+        <span class="prospect-stat-icon total" aria-hidden="true"></span>
+        <div>
+          <span class="stat-label">Total Prospek</span>
+          <span class="stat-value" id="stat-total">0</span>
+        </div>
+      </article>
+      <article class="card stat-card prospect-stat-card">
+        <span class="prospect-stat-icon strong" aria-hidden="true"></span>
+        <div>
+          <span class="stat-label">Prospek Kuat</span>
+          <span class="stat-value" id="stat-strong">0</span>
+        </div>
+      </article>
+      <article class="card stat-card prospect-stat-card">
+        <span class="prospect-stat-icon pending" aria-hidden="true"></span>
+        <div>
+          <span class="stat-label">Belum Dihubungi</span>
+          <span class="stat-value" id="stat-pending">0</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="prospect-analytics" aria-label="Analitik prospek">
+      <article class="card analytics-panel" aria-labelledby="prospect-funnel-title">
+        <h2 class="section-title with-small-icon" id="prospect-funnel-title">
+          <span class="filter-icon" aria-hidden="true"></span>
+          Corong Validasi
+        </h2>
+        <div class="funnel-bars">
+          <div class="funnel-bar-row">
+            <div class="funnel-bar-label"><span>Total Discan</span><strong id="analytics-scanned">0</strong></div>
+            <div class="funnel-bar-track"><span id="analytics-scanned-bar"></span></div>
+          </div>
+          <div class="funnel-bar-row">
+            <div class="funnel-bar-label"><span>Lulus Validasi</span><strong id="analytics-validated">0</strong></div>
+            <div class="funnel-bar-track"><span id="analytics-validated-bar"></span></div>
+          </div>
+          <div class="funnel-bar-row">
+            <div class="funnel-bar-label"><span>Tersimpan</span><strong id="analytics-saved">0</strong></div>
+            <div class="funnel-bar-track success"><span id="analytics-saved-bar"></span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card analytics-panel" aria-labelledby="prospect-category-title">
+        <h2 class="section-title with-small-icon" id="prospect-category-title">
+          <span class="pie-icon" aria-hidden="true"></span>
+          Distribusi Kategori Bisnis
+        </h2>
+        <div class="prospect-category-wrap">
+          <div class="prospect-donut" id="prospect-category-donut" aria-hidden="true">
+            <strong id="prospect-category-total">0</strong>
+            <span>Total</span>
+          </div>
+          <div class="prospect-category-legend" id="prospect-category-legend"></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="toolbar prospects-toolbar" aria-label="Filter prospek">
+      <label class="search-field" for="prospect-search">
+        <span aria-hidden="true"></span>
+        <input type="search" id="prospect-search" placeholder="Cari nama bisnis, kota, atau kategori">
+      </label>
+      <label class="sr-only" for="prospect-status">Status</label>
+      <select class="select" id="prospect-status">
+        <option value="ALL">Semua Status</option>
+        <option value="PROSPEK_KUAT">Prospek Kuat</option>
+        <option value="PROSPEK">Prospek</option>
+        <option value="UNCERTAIN">Uncertain</option>
+        <option value="SKIP">Skip</option>
+      </select>
+      <label class="sr-only" for="prospect-city">Kota</label>
+      <select class="select" id="prospect-city">
+        <option value="ALL">Semua Kota</option>
+      </select>
+      <label class="sr-only" for="prospect-sort">Urutan</label>
+      <select class="select" id="prospect-sort">
+        <option value="newest">Urutkan: Terbaru</option>
+        <option value="oldest">Terlama</option>
+        <option value="rating">Rating Tertinggi</option>
+        <option value="score">Score Tertinggi</option>
+      </select>
+      <label class="contact-filter"><input type="checkbox" id="contact-ready-only"> Siap Kontak</label>
+    </section>
+
+    <section class="card prospects-table-card" aria-live="polite">
+      <div class="table-wrap">
+        <table class="data-table prospects-table">
+          <thead>
+            <tr>
+              <th scope="col" class="checkbox-col"><input type="checkbox" id="select-all" aria-label="Pilih semua prospek"></th>
+              <th scope="col">Nama Bisnis</th>
+              <th scope="col">Kota</th>
+              <th scope="col">Rating</th>
+              <th scope="col">Score</th>
+              <th scope="col">Status</th>
+              <th scope="col">Media Sosial</th>
+              <th scope="col" class="text-right">Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="prospects-body"></tbody>
+        </table>
+        <div id="prospects-empty" class="empty-state" hidden>Belum ada prospek tersimpan.</div>
+      </div>
+      <footer class="table-footer">
+        <span id="table-count">Menampilkan 0 dari 0 hasil</span>
+        <div class="footer-actions">
+          <button type="button" class="button button-danger" id="delete-selected" disabled>Hapus Terpilih</button>
+        </div>
+      </footer>
+    </section>
+
+    <section class="history-section" aria-labelledby="history-title">
+      <h2 class="section-title" id="history-title">Riwayat Scan</h2>
+      <div class="card table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th scope="col">Waktu</th>
+              <th scope="col">Query</th>
+              <th scope="col">Lokasi</th>
+              <th scope="col">Discan</th>
+              <th scope="col">Kandidat</th>
+              <th scope="col">Tersimpan</th>
+            </tr>
+          </thead>
+          <tbody id="history-body"></tbody>
+        </table>
+        <div id="history-empty" class="empty-state" hidden>Belum ada riwayat scan.</div>
+      </div>
+    </section>
+
+    <div id="page-toast" class="page-toast" role="status" aria-live="polite" hidden></div>
+  </main>
+  <script type="module" src="prospects.js"></script>
+</body>
+</html>

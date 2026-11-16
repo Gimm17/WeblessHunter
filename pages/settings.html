@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pengaturan - WeblessHunter</title>
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/ui.css">
+  <link rel="stylesheet" href="settings.css">
+</head>
+<body class="page-shell">
+  <header class="topbar">
+    <div class="topbar-main">
+      <a class="brand" href="dashboard.html" aria-label="WeblessHunter">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>WeblessHunter</span>
+      </a>
+      <nav class="page-nav" aria-label="Navigasi halaman">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="prospects.html">Prospek</a>
+        <a href="settings.html" aria-current="page">Pengaturan</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-main settings-main" id="main-content">
+    <section>
+      <h1 class="page-title">Pengaturan</h1>
+      <p class="page-subtitle">Atur validasi, filter, dan format export lokal.</p>
+    </section>
+
+    <form id="settings-form" class="settings-form" novalidate>
+      <section class="card settings-card" aria-labelledby="engine-title">
+        <h2 id="engine-title">Double Check Engine</h2>
+        <label class="toggle-row">
+          <span><strong>Aktifkan Layer 2</strong><small>Cek bio Instagram atau Facebook.</small></span>
+          <input type="checkbox" id="enable-layer2">
+        </label>
+        <label class="toggle-row">
+          <span><strong>Aktifkan Layer 3</strong><small>Validasi Google Search untuk akurasi lebih tinggi.</small></span>
+          <input type="checkbox" id="enable-layer3">
+        </label>
+        <div class="settings-grid">
+          <div>
+            <label class="label" for="layer2-timeout">Timeout Layer 2 (ms)</label>
+            <input class="field" type="number" id="layer2-timeout" min="3000" max="30000" step="1000">
+          </div>
+          <div>
+            <label class="label" for="layer3-timeout">Timeout Layer 3 (ms)</label>
+            <input class="field" type="number" id="layer3-timeout" min="3000" max="30000" step="1000">
+          </div>
+        </div>
+      </section>
+
+      <section class="card settings-card" aria-labelledby="filter-title">
+        <h2 id="filter-title">Filter Otomatis</h2>
+        <div class="settings-grid">
+          <div>
+            <label class="label" for="min-rating">Rating minimum</label>
+            <input class="field" type="number" id="min-rating" min="0" max="5" step="0.1">
+            <p class="hint">Isi 0 untuk tidak memfilter rating.</p>
+          </div>
+          <div>
+            <label class="label" for="min-review-count">Minimum ulasan</label>
+            <input class="field" type="number" id="min-review-count" min="0" step="1">
+          </div>
+        </div>
+        <label class="toggle-row">
+          <span><strong>Auto-scan</strong><small>Mulai scan otomatis saat hasil Maps muncul.</small></span>
+          <input type="checkbox" id="auto-scan">
+        </label>
+      </section>
+
+      <section class="card settings-card" aria-labelledby="export-title">
+        <h2 id="export-title">Export</h2>
+        <div>
+          <label class="label" for="export-format">Format default</label>
+          <select class="select" id="export-format">
+            <option value="csv">CSV</option>
+            <option value="json">JSON</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="card settings-card" aria-labelledby="ai-title">
+        <h2 id="ai-title">AI Generator</h2>
+        <div class="settings-grid">
+          <div>
+            <label class="label" for="ai-base-url">Base URL</label>
+            <input class="field" type="url" id="ai-base-url" placeholder="https://api.tokenrouter.com/v1">
+          </div>
+          <div>
+            <label class="label" for="ai-model">Model</label>
+            <select class="select" id="ai-model"></select>
+            <p class="hint">Model utama dikirim sesuai pilihan. Jika tidak tersedia, generator mencoba fallback dari daftar ini.</p>
+          </div>
+          <div>
+            <label class="label" for="ai-temperature">Temperature</label>
+            <input class="field" type="number" id="ai-temperature" min="0" max="1" step="0.05">
+          </div>
+          <div>
+            <label class="label" for="ai-max-tokens">Max tokens</label>
+            <input class="field" type="number" id="ai-max-tokens" min="1000" max="20000" step="500">
+          </div>
+        </div>
+        <div class="settings-secret">
+          <label class="label" for="ai-api-key">API key TokenRouter</label>
+          <input class="field" type="password" id="ai-api-key" autocomplete="off" placeholder="sk-...">
+          <p class="hint">Disimpan lokal di browser. Jangan share extension/profile Chrome ini jika API key aktif.</p>
+        </div>
+      </section>
+
+      <div class="settings-actions">
+        <button type="button" class="button button-muted" id="reset-settings">Reset Default</button>
+        <button type="submit" class="button button-primary">Simpan Pengaturan</button>
+      </div>
+    </form>
+    <div id="settings-toast" role="status" aria-live="polite" hidden></div>
+  </main>
+  <script type="module" src="settings.js"></script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+body {
+  width: 320px;
+  min-height: 540px;
+  overflow: auto;
+}
+
+.popup-shell {
+  width: 320px;
+  min-height: 540px;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-cream);
+}
+
+.popup-header {
+  min-height: 70px;
+  padding: var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-white);
+  background: var(--color-primary);
+}
+
+.popup-version {
+  font-size: 11px;
+  opacity: 0.86;
+}
+
+.popup-search {
+  margin: var(--space-md);
+  padding: var(--space-lg);
+}
+
+.popup-search h1 {
+  margin: 0 0 var(--space-md);
+  font-family: var(--font-heading);
+  font-size: 15px;
+}
+
+.popup-field-group + .popup-field-group {
+  margin-top: var(--space-sm);
+}
+
+.popup-scan-button {
+  width: 100%;
+  margin-top: var(--space-md);
+}
+
+.popup-stats {
+  margin: var(--space-md);
+  padding: var(--space-lg);
+}
+
+.popup-stats h1 {
+  margin: 0 0 var(--space-md);
+  color: var(--color-muted);
+  font-family: var(--font-heading);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.popup-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  text-align: center;
+}
+
+.popup-stats-grid > div + div {
+  border-left: 1px solid var(--color-taupe);
+}
+
+.popup-number {
+  display: block;
+  color: var(--color-primary-dark);
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.popup-menu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: 0 var(--space-md) var(--space-md);
+}
+
+.popup-menu-item {
+  width: 100%;
+  min-height: 54px;
+  padding: 0 var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-navy);
+  background: var(--color-white);
+  border: 1px solid var(--color-taupe);
+  border-radius: 10px;
+  box-shadow: var(--shadow-card);
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+.popup-menu-item::after {
+  content: ">";
+  color: var(--color-primary-dark);
+}
+
+.popup-menu-item:hover {
+  background: rgba(170, 205, 220, 0.2);
+}
+
+.popup-footer {
+  margin-top: auto;
+  min-height: 52px;
+  padding: 0 var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  border-top: 1px solid var(--color-taupe);
+  color: var(--color-muted);
+  font-size: 12px;
+}
+
+.popup-toast {
+  margin: 0 var(--space-md) var(--space-md);
+  padding: var(--space-md);
+  color: var(--color-white);
+  background: var(--color-success);
+  border-radius: var(--radius-md);
+}

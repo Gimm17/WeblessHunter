@@ -1,0 +1,11 @@
+{
+  "name": "weblesshunter",
+  "version": "1.0.0",
+  "description": "Chrome extension for finding local businesses without websites from Google Maps.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --test"
+  },
+  "devDependencies": {}
+}

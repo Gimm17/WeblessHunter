@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WeblessHunter - Detail View</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary": "#426370",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#234a66",
+                        "info-blue": "#3498DB",
+                        "on-secondary-fixed": "#001f28",
+                        "inverse-surface": "#203243",
+                        "muted-taupe": "#D2C4B4",
+                        "on-surface": "#091d2e",
+                        "inverse-primary": "#a5cbec",
+                        "surface": "#f7f9ff",
+                        "text-muted": "#6B7A8D",
+                        "primary-fixed": "#cbe6ff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#4f4537",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#c2c7ce",
+                        "tertiary-fixed-dim": "#d3c4b2",
+                        "subtitle-blue": "#6B94B5",
+                        "on-primary-container": "#113c57",
+                        "tertiary": "#685d4e",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-container": "#466774",
+                        "secondary-container": "#c2e5f5",
+                        "secondary-fixed": "#c5e8f7",
+                        "surface-container": "#e3efff",
+                        "on-primary-fixed": "#001e30",
+                        "on-error-container": "#93000a",
+                        "background": "#F3E3D0", /* Overridden per spec */
+                        "surface-container-highest": "#d1e4fb",
+                        "on-tertiary-fixed": "#221a0f",
+                        "surface-bright": "#f7f9ff",
+                        "on-background": "#091d2e",
+                        "on-surface-variant": "#42474d",
+                        "primary": "#3d627f",
+                        "danger-red": "#E74C3C",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#aea08f",
+                        "warning-amber": "#F39C12",
+                        "secondary-fixed-dim": "#a9ccdb",
+                        "primary-container": "#81a6c6",
+                        "surface-container-high": "#d9eaff",
+                        "surface-variant": "#d1e4fb",
+                        "tertiary-fixed": "#f0e0cd",
+                        "surface-tint": "#3d627f",
+                        "outline": "#72787e",
+                        "on-primary": "#ffffff",
+                        "success-green": "#27AE60",
+                        "white-surface": "#FFFFFF",
+                        "primary-fixed-dim": "#a5cbec",
+                        "on-secondary-fixed-variant": "#294b58",
+                        "surface-dim": "#c9dcf3",
+                        "on-tertiary-container": "#40372a",
+                        "inverse-on-surface": "#e8f2ff",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#edf4ff"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        xl: "20px",
+                        sm: "8px",
+                        "panel-width": "380px",
+                        xs: "4px",
+                        md: "12px",
+                        lg: "16px",
+                        "popup-width": "320px",
+                        "2xl": "24px"
+                    },
+                    fontFamily: {
+                        "badge-text": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-regular": ["Inter"],
+                        "mono-data": ["JetBrains Mono"],
+                        "caption": ["Inter"],
+                        "body-small": ["Inter"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "button-text": ["Plus Jakarta Sans"]
+                    },
+                    fontSize: {
+                        "badge-text": ["10px", { lineHeight: "12px", letterSpacing: "0.05em", fontWeight: "700" }],
+                        "headline-lg": ["18px", { lineHeight: "24px", fontWeight: "700" }],
+                        "body-regular": ["13px", { lineHeight: "18px", fontWeight: "400" }],
+                        "mono-data": ["12px", { lineHeight: "16px", fontWeight: "400" }],
+                        "caption": ["11px", { lineHeight: "14px", fontWeight: "500" }],
+                        "body-small": ["12px", { lineHeight: "16px", fontWeight: "400" }],
+                        "headline-md": ["15px", { lineHeight: "20px", fontWeight: "600" }],
+                        "button-text": ["13px", { lineHeight: "16px", fontWeight: "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background min-h-screen flex justify-center items-center p-4">
+<!-- Detail View Side Panel -->
+<div class="w-panel-width bg-background shadow-[-4px_0_20px_rgba(0,0,0,0.10)] h-[800px] overflow-y-auto rounded-none relative flex flex-col border-r border-muted-taupe">
+<!-- Header Detail -->
+<div class="p-lg pb-md border-b border-muted-taupe bg-background sticky top-0 z-10 flex flex-col gap-sm">
+<button class="flex items-center gap-xs text-primary-container font-button-text text-button-text hover:opacity-80 transition-opacity self-start">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                Kembali
+            </button>
+<div class="flex flex-col">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Kopi Janji Jiwa</h1>
+<p class="font-body-small text-body-small text-text-muted">Cafe · Palu</p>
+</div>
+</div>
+<!-- Scrollable Content Canvas -->
+<div class="flex-1 p-lg flex flex-col gap-lg">
+<!-- Info Card -->
+<div class="bg-white-surface rounded-[12px] border border-muted-taupe p-md shadow-[0_2px_8px_rgba(0,0,0,0.06)] flex flex-col gap-md">
+<div class="flex items-center gap-xs text-warning-amber font-body-small text-body-small">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-on-surface font-medium">4.6</span>
+<span class="text-text-muted">· 124 ulasan</span>
+</div>
+<div class="flex items-start gap-sm text-text-muted font-body-small text-body-small">
+<span class="material-symbols-outlined text-[16px] mt-[2px]">location_on</span>
+<span class="text-on-surface">Jl. Hasanuddin No. 45, Lolu Utara, Palu, Sulawesi Tengah</span>
+</div>
+<div class="flex items-center gap-sm text-text-muted font-body-small text-body-small">
+<span class="material-symbols-outlined text-[16px]">call</span>
+<span class="text-on-surface font-mono-data text-mono-data">081234567890</span>
+<button class="ml-auto flex items-center gap-xs px-2 py-1 border border-muted-taupe rounded bg-surface hover:bg-surface-dim transition-colors text-text-muted text-[10px]">
+<span class="material-symbols-outlined text-[12px]">content_copy</span>
+                        Copy
+                    </button>
+</div>
+<div class="flex items-center gap-sm text-success-green font-body-small text-body-small">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>Buka 08.00–22.00</span>
+</div>
+</div>
+<!-- Sosmed Section -->
+<div class="flex flex-col gap-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface">Media Sosial</h2>
+<div class="bg-white-surface rounded-lg border border-muted-taupe p-sm flex items-center gap-sm hover:border-primary-container transition-colors cursor-pointer group">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary-container group-hover:bg-primary-container group-hover:text-white-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">photo_camera</span> <!-- Placeholder for Instagram -->
+</div>
+<span class="font-body-regular text-body-regular text-primary-container group-hover:underline">@janjijiwa.palu</span>
+<span class="material-symbols-outlined ml-auto text-text-muted text-[16px]">open_in_new</span>
+</div>
+</div>
+<!-- Validation Section -->
+<div class="flex flex-col gap-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface">Hasil Validasi</h2>
+<div class="flex flex-col gap-xs pl-sm border-l-2 border-muted-taupe ml-sm">
+<div class="flex items-center gap-sm font-body-small text-body-small text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-success-green">check_circle</span>
+                        Layer 1 — Maps field check
+                    </div>
+<div class="flex items-center gap-sm font-body-small text-body-small text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-success-green">check_circle</span>
+                        Layer 2 — Bio Instagram
+                    </div>
+<div class="flex items-center gap-sm font-body-small text-body-small text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-success-green">check_circle</span>
+                        Layer 3 — Google Search
+                    </div>
+</div>
+</div>
+<!-- Status Result Card -->
+<div class="rounded-lg p-md border border-muted-taupe border-l-[4px] border-l-success-green shadow-sm flex flex-col gap-xs" style="background: linear-gradient(135deg, #E8F5E9, #F1F8E9);">
+<div class="flex items-center gap-xs text-success-green">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-bold text-[14px] uppercase tracking-wide">Prospek Kuat</span>
+</div>
+<p class="font-body-regular text-body-small text-on-surface mt-1 leading-relaxed">
+                    Bisnis ini aktif di Instagram tapi tidak memiliki link website resmi di Bio maupun Google Maps.
+                </p>
+</div>
+<!-- Notes Field -->
+<div class="flex flex-col gap-sm">
+<label class="font-headline-md text-headline-md text-on-surface" for="catatan">Catatan</label>
+<textarea class="w-full bg-white-surface border border-muted-taupe rounded-lg p-md font-body-regular text-body-regular text-on-surface focus:border-primary-container focus:ring focus:ring-primary-container/15 resize-none transition-shadow placeholder:text-text-muted" id="catatan" placeholder="Tambahkan catatan..." rows="3"></textarea>
+</div>
+</div>
+<!-- Bottom Action Row -->
+<div class="p-lg border-t border-muted-taupe bg-background mt-auto sticky bottom-0 z-10 flex gap-sm items-center">
+<button class="flex items-center justify-center w-10 h-10 border border-text-muted text-text-muted rounded-lg hover:bg-white-surface transition-colors active:scale-95" title="Buka di Maps">
+<span class="material-symbols-outlined text-[20px]">map</span>
+</button>
+<button class="flex items-center justify-center gap-xs px-md h-10 border border-danger-red text-danger-red rounded-lg hover:bg-error-container transition-colors font-button-text text-button-text active:scale-95">
+                Skip ✕
+            </button>
+<button class="flex-grow flex items-center justify-center gap-xs h-10 bg-primary-container text-white-surface rounded-lg hover:opacity-90 transition-opacity font-button-text text-button-text shadow-[0_2px_6px_rgba(129,166,198,0.30)] active:scale-95">
+<span class="material-symbols-outlined text-[18px]">save</span>
+                Simpan
+            </button>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WeblessHunter</title>
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/ui.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="popup-shell" id="main-content">
+    <header class="popup-header">
+      <div class="panel-brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>WeblessHunter</span>
+      </div>
+      <span class="popup-version">v1.0.0</span>
+    </header>
+
+    <form class="popup-search card" id="search-form">
+      <h1>Mulai Scan</h1>
+      <div class="popup-field-group">
+        <label class="label" for="category-select">Kategori</label>
+        <select class="select" id="category-select"></select>
+      </div>
+      <div class="popup-field-group">
+        <label class="label" for="location-input">Lokasi target</label>
+        <input class="field" id="location-input" type="search" list="location-options" placeholder="contoh: Poso, Palu, Makassar">
+        <datalist id="location-options"></datalist>
+      </div>
+      <div class="popup-field-group">
+        <label class="label" for="keyword-input">Keyword bisnis</label>
+        <input class="field" id="keyword-input" type="search" placeholder="opsional: coffee, barbershop, Amor Fati">
+      </div>
+      <div class="popup-field-group">
+        <label class="label" for="target-count-select">Target hasil</label>
+        <select class="select" id="target-count-select"></select>
+      </div>
+      <button class="button button-primary popup-scan-button" type="submit" id="scan-button">Cari & Scan</button>
+    </form>
+
+    <section class="popup-stats card" aria-labelledby="today-title">
+      <h1 id="today-title">Hari Ini</h1>
+      <div class="popup-stats-grid">
+        <div><span id="today-scanned" class="popup-number">0</span><span>Discan</span></div>
+        <div><span id="today-prospects" class="popup-number">0</span><span>Prospek</span></div>
+        <div><span id="today-saved" class="popup-number">0</span><span>Tersimpan</span></div>
+      </div>
+    </section>
+
+    <nav class="popup-menu" aria-label="Menu WeblessHunter">
+      <button type="button" class="popup-menu-item" id="open-dashboard">Buka Dashboard</button>
+      <button type="button" class="popup-menu-item" id="open-prospects">Lihat Semua Prospek</button>
+      <button type="button" class="popup-menu-item" id="export-csv">Export CSV</button>
+      <button type="button" class="popup-menu-item" id="open-settings">Pengaturan</button>
+    </nav>
+
+    <footer class="popup-footer">
+      <span class="status-dot" id="maps-dot"></span>
+      <span id="maps-status">Cek status Google Maps...</span>
+    </footer>
+    <div id="popup-toast" class="popup-toast" role="status" aria-live="polite" hidden></div>
+  </main>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
